@@ -1,8 +1,6 @@
 from django.http import Http404
-from rest_framework import viewsets
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework import status
-
 
 from .models import Movie
 from .serializers import MovieSerializer
@@ -10,6 +8,7 @@ from .serializers import MovieSerializer
 
 class MovieViewSet(viewsets.ViewSet):
     queryset = Movie.objects.all()
+
     def create(self, request):
         serializer = MovieSerializer(data=request.data)
         if serializer.is_valid():
